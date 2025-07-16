@@ -21,5 +21,7 @@ namespace AppointmentTracking.Domain.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public bool IsPaid { get; set; } = false;
+        public decimal Price { get; set; }
+        public string? Notes { get; set; }
     }
 }
