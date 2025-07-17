@@ -4,12 +4,13 @@ using AppointmentTracking.Application.Features.Appointment.Commands;
 using AppointmentTracking.Application.Features.Appointment.Validators;
 using AppointmentTracking.Application.Interfaces;
 using AppointmentTracking.Application.Services;
+using AppointmentTracking.Domain.Entities;
 using AppointmentTracking.Infrastructure.Persistence.Context;
 using AppointmentTracking.Infrastructure.Repositories;
 using FluentValidation;
 using MediatR;
-using System;
 using Serilog;
+using System;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -23,7 +24,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+//services.AddScoped<IConsultantRepository, ConsultantRepository>();
+builder.Services.AddScoped<IConsultantProfileRepository, ConsultantProfileRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<AppointmentService>();
+//builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

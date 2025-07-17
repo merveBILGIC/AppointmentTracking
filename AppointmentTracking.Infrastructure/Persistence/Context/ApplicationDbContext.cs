@@ -15,7 +15,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Service> Services => Set<Service>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Appointment> Appointments => Set<Appointment>();
-
+    public DbSet<ConsultantService> ConsultantServices => Set<ConsultantService>();
+    public DbSet<ConsultantProfile> ConsultantProfiles => Set<ConsultantProfile>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Apply all configurations

@@ -10,5 +10,6 @@ namespace AppointmentTracking.Domain.Entities
 
         public Guid CategoryId { get; set; }
         public Category Category { get; set; } = null!;
+        public ICollection<ConsultantService> ConsultantServices { get; set; } = new List<ConsultantService>();
     }
 }

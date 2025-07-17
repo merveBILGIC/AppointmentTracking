@@ -2,11 +2,6 @@
 using AppointmentTracking.Domain.Entities;
 using AppointmentTracking.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppointmentTracking.Infrastructure.Repositories
 {
