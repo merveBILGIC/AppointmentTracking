@@ -1,44 +1,52 @@
 ﻿using AppointmentTracking.Application.Interfaces;
 using AppointmentTracking.Domain.Entities;
 using AppointmentTracking.Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentTracking.Infrastructure.Repositories
 {
     public class ServiceRepository : IServiceRepository
     {
         private readonly ApplicationDbContext _context;
+
         public ServiceRepository(ApplicationDbContext context)
         {
-                _context = context;
-        }
-        public Task AddAsync(Service service, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task AddAsync(Service service, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await _context.Services.AddAsync(service, cancellationToken);
         }
 
-        public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var service = await _context.Services.FindAsync(new object[] { id }, cancellationToken);
+            if (service is not null)
+            {
+                _context.Services.Remove(service);
+            }
         }
 
-        public Task<IEnumerable<Service>> GetAllAsync()
+        public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Services.AnyAsync(s => s.Id == id, cancellationToken);
         }
 
-        public Task<Service?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Service>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Services.ToListAsync();
         }
 
-        public Task UpdateAsync(Service service, CancellationToken cancellationToken = default)
+        public async Task<Service?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Services.FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+        }
+
+        public async Task UpdateAsync(Service service, CancellationToken cancellationToken = default)
+        {
+            _context.Services.Update(service);
         }
     }
+
 }

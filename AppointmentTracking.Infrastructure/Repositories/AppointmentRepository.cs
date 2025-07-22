@@ -38,9 +38,9 @@ namespace AppointmentTracking.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task AddAsync(Appointment appointment)
+        public async Task AddAsync(Appointment appointment , CancellationToken cancellationToken)
         {
-            await _context.Appointments.AddAsync(appointment);
+            await _context.Appointments.AddAsync(appointment,cancellationToken);
             await _context.SaveChangesAsync();
         }
 

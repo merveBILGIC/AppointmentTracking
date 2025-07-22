@@ -27,6 +27,7 @@ namespace AppointmentTracking.Application.Features.ConsultantProfiles.Handlers
                 return Result<string>.Fail("Profil bulunamadı.");
 
             await _unitOfWork.ConsultantProfiles.DeleteAsync(profile, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result<string>.Ok("Profil silindi.");
         }
     }

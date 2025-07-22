@@ -24,11 +24,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-//services.AddScoped<IConsultantRepository, ConsultantRepository>();
+builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 builder.Services.AddScoped<IConsultantProfileRepository, ConsultantProfileRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<AppointmentService>();
-//builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>

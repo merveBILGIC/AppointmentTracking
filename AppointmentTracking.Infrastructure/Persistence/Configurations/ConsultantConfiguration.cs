@@ -16,6 +16,7 @@ namespace AppointmentTracking.Infrastructure.Persistence.Configurations;
               .WithOne(p => p.Consultant)
               .HasForeignKey<ConsultantProfile>(p => p.ConsultantId)
               .OnDelete(DeleteBehavior.Cascade);
-    }
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        }
     }
 

@@ -37,7 +37,7 @@ namespace AppointmentTracking.Application.Features.ConsultantProfiles.Handlers
             existing.ProfilePhotoUrl = request.ProfilePhotoUrl ?? existing.ProfilePhotoUrl;
 
             await _unitOfWork.ConsultantProfiles.UpdateAsync(existing, cancellationToken);
-
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             var dto = _mapper.Map<ConsultantProfileDto>(existing);
             return Result<ConsultantProfileDto>.Ok(dto, "Profil güncellendi.");
         }

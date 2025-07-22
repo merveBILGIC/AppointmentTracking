@@ -1,23 +1,17 @@
 ﻿using AppointmentTracking.Application.Features.Appointment.Commands;
 using AppointmentTracking.Application.Interfaces;
 using AppointmentTracking.SharedKernel.Results;
-using AppointmentTracking.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppointmentTracking.Application.Features.Appointment.Handlers
 {
     public class CreateAppointmentHandler : IRequestHandler<CreateAppointmentCommand, Result<Guid>>
     {
-        private readonly IAppointmentRepository _repo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateAppointmentHandler(IAppointmentRepository repo)
+        public CreateAppointmentHandler(IUnitOfWork unitOfWork)
         {
-            _repo = repo;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Result<Guid>> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
@@ -35,9 +29,12 @@ namespace AppointmentTracking.Application.Features.Appointment.Handlers
                 IsPaid = false,
                 IsDeleted = false
             };
-            //TODO: dönüş tipi olarak guid yerine veriye de gönderebiliriz. oluşan randevunun takvime eklenmesi gibi gibi...
-            await _repo.AddAsync(appointment);
+
+            await _unitOfWork.Appointments.AddAsync(appointment, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
             return Result<Guid>.Ok(appointment.Id, "Randevu oluşturuldu.");
         }
     }
+
 }
