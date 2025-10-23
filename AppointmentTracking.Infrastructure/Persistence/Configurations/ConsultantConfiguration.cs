@@ -8,9 +8,15 @@ namespace AppointmentTracking.Infrastructure.Persistence.Configurations;
     {
         public void Configure(EntityTypeBuilder<Consultant> builder)
         {
-            builder.Property(c => c.FullName).IsRequired().HasMaxLength(100);
-            builder.Property(c => c.Email).IsRequired().HasMaxLength(100);
-            builder.Property(c => c.Phone).IsRequired().HasMaxLength(20);
+            builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
+            builder.Property(c => c.Surname).IsRequired().HasMaxLength(50);
+      
+
+            builder.HasOne(c => c.ConsultantProfile)
+              .WithOne(p => p.Consultant)
+              .HasForeignKey<ConsultantProfile>(p => p.ConsultantId)
+              .OnDelete(DeleteBehavior.Cascade);
+            builder.HasQueryFilter(c => !c.IsDeleted);
         }
     }
 

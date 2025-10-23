@@ -2,11 +2,6 @@
 using AppointmentTracking.Domain.Entities;
 using AppointmentTracking.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppointmentTracking.Infrastructure.Repositories
 {
@@ -43,9 +38,9 @@ namespace AppointmentTracking.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task AddAsync(Appointment appointment)
+        public async Task AddAsync(Appointment appointment , CancellationToken cancellationToken)
         {
-            await _context.Appointments.AddAsync(appointment);
+            await _context.Appointments.AddAsync(appointment,cancellationToken);
             await _context.SaveChangesAsync();
         }
 
