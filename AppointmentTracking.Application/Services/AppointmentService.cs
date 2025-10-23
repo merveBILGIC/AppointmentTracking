@@ -19,7 +19,7 @@ namespace AppointmentTracking.Application.Services
             _repo = repo;
         }
 
-        public async Task<Result<Guid>> CreateAsync(CreateAppointmentRequest req)
+        public async Task<Result<Guid>> CreateAsync(CreateAppointmentRequest req, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace AppointmentTracking.Application.Services
                     Notes = req.Notes
                 };
 
-                await _repo.AddAsync(entity);
+                await _repo.AddAsync(entity, cancellationToken);
                 return Result<Guid>.Ok(entity.Id, "Randevu başarıyla oluşturuldu.");
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace AppointmentTracking.Application.Services
                 {
                     Id = a.Id,
                     ClientName = a.Client.FullName,
-                    ConsultantName = a.Consultant.FullName,
+                    ConsultantName = a.Consultant.Name,
                     ServiceName = a.Service.Name,
                     StartTime = a.StartTime,
                     Price = a.Price

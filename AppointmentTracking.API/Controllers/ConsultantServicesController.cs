@@ -30,11 +30,11 @@ namespace AppointmentTracking.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("consultant/{consultantId}")]
-        public async Task<IActionResult> GetServicesByConsultant(Guid consultantId)
-        {
-            var result = await _mediator.Send(new GetServicesByConsultantIdQuery(consultantId));
-            return Ok(result);
-        }
+        //[HttpGet("consultant/{consultantId}")]
+        //public async Task<IActionResult> GetServicesByConsultant(Guid consultantId)
+        //{
+        //    var result = await _mediator.Send(new GetServicesByConsultantIdQuery(consultantId));
+        //    return Ok(result);
+        //}
     }
 }

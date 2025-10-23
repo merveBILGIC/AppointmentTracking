@@ -4,4 +4,4 @@ using MediatR;
 
 namespace AppointmentTracking.Application.Features.ConsultantService.Queries;
 
-public record GetServicesByConsultantIdQuery(Guid ConsultantId) : IRequest<Result<IEnumerable<ServiceDto>>>;
+public record GetServicesByConsultantIdQuery(Guid ConsultantId , Guid ServiceId) : IRequest<Result<IEnumerable<ServiceDto>>>;

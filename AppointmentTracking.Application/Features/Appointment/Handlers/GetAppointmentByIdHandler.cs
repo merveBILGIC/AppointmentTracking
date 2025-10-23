@@ -30,7 +30,7 @@ namespace AppointmentTracking.Application.Features.Appointment.Handlers
             {
                 Id = a.Id,
                 ClientName = a.Client.FullName,
-                ConsultantName = a.Consultant.FullName,
+                ConsultantName = a.Consultant.Name,
                 ServiceName = a.Service.Title,
                 StartTime = a.StartTime,
                 Price = a.Price

@@ -1,7 +1,5 @@
 ﻿using AppointmentTracking.Domain.Entities;
 
-namespace AppointmentTracking.Application.Interfaces;
-
 namespace AppointmentTracking.Application.Interfaces
 {
     public interface IAppointmentRepository
@@ -9,7 +7,7 @@ namespace AppointmentTracking.Application.Interfaces
         Task<Appointment?> GetByIdAsync(Guid id);
         Task<Appointment?> GetByIdWithIncludesAsync(Guid id);
         Task<List<Appointment>> GetAllWithIncludesAsync();
-        Task AddAsync(Appointment appointment);
+        Task AddAsync(Appointment appointment,CancellationToken cancellationToken);
         Task UpdateAsync(Appointment appointment);
         Task<IEnumerable<object>> GetAllAsync();
     }

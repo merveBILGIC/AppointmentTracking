@@ -20,7 +20,7 @@ public class GetServicesByConsultantIdHandler : IRequestHandler<GetServicesByCon
 
     public async Task<Result<IEnumerable<ServiceDto>>> Handle(GetServicesByConsultantIdQuery request, CancellationToken cancellationToken)
     {
-        var consultantServiceRepo = await _unitOfWork.ConsultantService.GetServicesByConsultantIdAsync(request.ConsultantId, cancellationToken);
+        var consultantServiceRepo = await _unitOfWork.ConsultantService.GetServicesByConsultantIdAsync(request.ConsultantId,request.ServiceId, cancellationToken);
 
         if (consultantServiceRepo is null)
          return Result<IEnumerable<ServiceDto>>.Fail("Danışmana ait servis bulunamadı.");

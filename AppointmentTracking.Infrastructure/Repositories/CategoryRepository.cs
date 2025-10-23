@@ -1,14 +1,15 @@
 ﻿using AppointmentTracking.Application.Interfaces;
 using AppointmentTracking.Domain.Entities;
+using AppointmentTracking.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentTracking.Infrastructure.Repositories;
 
 public class CategoryRepository : ICategoryRepository
 {
-    private readonly DbContext _context;
+    private readonly ApplicationDbContext _context;
 
-    public CategoryRepository(DbContext context)
+    public CategoryRepository(ApplicationDbContext context)
     {
         _context = context;
     }
