@@ -54,5 +54,10 @@ namespace AppointmentTracking.Infrastructure.Repositories
             _context.Appointments.Update(appointment);
             await _context.SaveChangesAsync();
         }
+
+        public Task<IEnumerable<object>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

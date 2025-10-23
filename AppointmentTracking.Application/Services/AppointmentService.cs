@@ -50,7 +50,7 @@ namespace AppointmentTracking.Application.Services
             {
                 var items = await _repo.GetAllAsync();
 
-                var dtos = items.Select(a => new AppointmentDto
+                var dtos = items.Cast<Appointment>().Select(a => new AppointmentDto
                 {
                     Id = a.Id,
                     ClientName = a.Client.FullName,

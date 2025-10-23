@@ -14,5 +14,6 @@ namespace AppointmentTracking.Application.Interfaces
         Task<List<Appointment>> GetAllWithIncludesAsync();
         Task AddAsync(Appointment appointment);
         Task UpdateAsync(Appointment appointment);
+        Task<IEnumerable<object>> GetAllAsync();
     }
 }

@@ -22,7 +22,7 @@ namespace AppointmentTracking.Application.Features.Appointment.Handlers
 
         public async Task<Result<Guid>> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
-            var appointment = new Appointment
+            var appointment = new AppointmentTracking.Domain.Entities.Appointment
             {
                 Id = Guid.NewGuid(),
                 ClientId = request.ClientId,

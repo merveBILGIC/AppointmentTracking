@@ -23,5 +23,6 @@ namespace AppointmentTracking.Domain.Entities
         public bool IsPaid { get; set; } = false;
         public decimal Price { get; set; }
         public string? Notes { get; set; }
+        public string? Title { get; set; }
     }
 }
