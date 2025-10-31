@@ -8,7 +8,7 @@ namespace AppointmentTracking.Infrastructure.Persistence.Configurations;
     {
         public void Configure(EntityTypeBuilder<Consultant> builder)
         {
-            builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
+            builder.Property(c => c.FullName).IsRequired().HasMaxLength(50);
             builder.Property(c => c.Surname).IsRequired().HasMaxLength(50);
       
 

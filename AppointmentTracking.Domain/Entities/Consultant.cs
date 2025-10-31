@@ -4,7 +4,7 @@ namespace AppointmentTracking.Domain.Entities
 {
     public class Consultant : BaseEntity<Guid>
     {
-        public string Name { get; set; } = null!;
+        public string FullName { get; set; } = null!;
         public string Surname { get; set; } = null!;
         
         // İlişkiler

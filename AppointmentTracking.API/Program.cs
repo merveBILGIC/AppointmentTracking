@@ -12,6 +12,7 @@ using MediatR;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using AppointmentTracking.Application.Mappings;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -34,8 +35,8 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<AppointmentService>();
 
- builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+ //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

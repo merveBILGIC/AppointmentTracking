@@ -19,7 +19,7 @@ namespace AppointmentTracking.Application.Features.Consultant.Handlers
             var consultant = new AppointmentTracking.Domain.Entities.Consultant
             {
                 Id = Guid.NewGuid(),
-                Name = request.Name,
+                FullName = request.FullName,
                 Surname = request.Surname
             };
 

@@ -54,7 +54,7 @@ namespace AppointmentTracking.Application.Services
                 {
                     Id = a.Id,
                     ClientName = a.Client.FullName,
-                    ConsultantName = a.Consultant.Name,
+                    ConsultantName = a.Consultant.FullName,
                     ServiceName = a.Service.Name,
                     StartTime = a.StartTime,
                     Price = a.Price

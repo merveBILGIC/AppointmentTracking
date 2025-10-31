@@ -20,7 +20,7 @@ namespace AppointmentTracking.Application.Features.Consultant.Handlers
             if (consultant is null)
                 return Result<string>.Fail("Danışman bulunamadı.");
 
-            consultant.Name = request.Name;
+            consultant.FullName = request.FullName;
             consultant.Surname = request.Surname;
 
             await _uow.Consultants.UpdateAsync(consultant, cancellationToken);
